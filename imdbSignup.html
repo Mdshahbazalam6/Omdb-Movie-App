@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            color: white;
+        }
+        body{
+            background-color: rgb(12,17,27);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: teal;
+            height: 5vh;
+            align-items: center;
+        }
+
+        nav>ul {
+            width: 30vw;
+            margin-left: 68vw;
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        nav>ul>li:hover {
+            color: red;
+        }
+        form{
+            border: 1px solid black;
+            width: 25vw;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 4vh;
+        }
+        form input{
+            padding: 2vh;
+            margin: 1vh;
+            border-radius: 5px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+        }
+        h1{
+            text-align: center;
+            margin-top: 20vh;
+        }
+        form input:placeholder-shown{
+            font-size: 1vw;
+        }
+        h2{
+            text-align: center;
+            margin-top: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>SignUp Page</h1>
+    <form action="" id="signupform" onsubmit="signup()">
+        <input type="text" placeholder="Enter Your Name" name="name">
+        <input type="number" placeholder="Enter Mobile Number" name="mobile">
+        <input type="email" placeholder="Enter You Email Id" name="email">
+        <input type="password" placeholder="Enter Your Password" name="password">
+        <input type="submit" >
+    </form>
+    <h2> <a href="imdbsignin.html" style="text-decoration: none;">Go to SignIn Page</a></h2>
+</body>
+<script>
+
+    const signup=()=>{
+        event.preventDefault()
+    var form=document.getElementById("signupform")
+    var Name=form["name"].value
+    var mobile=form["mobile"].value
+    var email=form["email"].value
+    var password=form["password"].value
+    console.log(Name)
+
+    if(Name==='' || mobile === "" || email === "" || password===""){
+        alert(`invalid Credentials`)
+    }else if(password.length <8){
+        alert(`Password Must be more than or equal to 8 digit`)
+    }else  if(Name !='' || mobile != "" || email === "" || password != ""){
+        var a=localStorage.getItem("signupform2")
+        if(a === null){
+            localStorage.setItem("signupform2",'[]')
+        }
+
+        let signup=JSON.parse(localStorage.getItem("signupform2"))
+        console.log(signup)
+        let data={Name,mobile,email,password}
+        signup.push(data)
+        console.log(signup)
+       localStorage.setItem("signupform2",JSON.stringify(signup))
+    }
+    location.reload()
+}
+</script>
+</html>

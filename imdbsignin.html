@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            color: white;
+        }
+        body{
+            background-color: rgb(12,17,27);
+        }
+        form{
+            border: 1px solid black;
+            width: 25vw;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 4vh;
+        }
+        form input{
+            padding: 2vh;
+            margin: 1vh;
+            border-radius: 5px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+        }
+        h1{
+            text-align: center;
+            margin-top: 20vh;
+        }
+        form input:placeholder-shown{
+            font-size: 1vw;
+        }
+        h2{
+            text-align: center;
+            margin-top: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>SignIn Page</h1>
+    <form action="" id="signupform" onsubmit="signup()">
+        <input type="email" placeholder="Enter You Email Id" name="email">
+        <input type="password" placeholder="Enter Your Password" name="password">
+        <input type="submit" >
+    </form>
+    <h2> <a href="imdbSignup.html" style="text-decoration: none;">Go to SignUp Page</a></h2>
+
+</body>
+<script>
+       const signup=()=>{
+        event.preventDefault()
+    var form=document.getElementById("signupform")
+    var email=form["email"].value
+    var password=form["password"].value
+    console.log(email)
+
+    let flag=false
+    if(email === "" || password===""){
+        alert(`invalid Credentials`)
+    }else  if(email != "" || password != ""){
+
+        let signup=JSON.parse(localStorage.getItem("signupform2"))
+
+        signup.forEach((ele) => {
+            if(ele.email === email && ele.password === password){
+                flag=true
+                return
+            }
+        });
+
+    
+    }
+    if(flag === true){
+        console.log(1)
+        location.href=`Imdb.html`
+    }else{
+        alert(`please SignUp first`)
+    }
+    const name=()=>{
+        location.href=`Imdb.html`
+    }
+    // location.reload()
+}
+</script>
+</html>
+
+<!-- F:\Hamleys\navbar\unit4\Imdb.html -->
